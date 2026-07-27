@@ -16,6 +16,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
     steps:
     - uses: actions/checkout@v4
@@ -31,6 +33,11 @@ jobs:
         pip install ruff mypy
     - name: Lint with ruff
       run: ruff check carrito.py 
+    - name: Type check with mypy
+      run: mypy --strict carrito.py
+    - name: Ejcutando pruebas 
+      run: echo "Ejecutando secretos" $SECRET_KEY
+      
 
 
     
